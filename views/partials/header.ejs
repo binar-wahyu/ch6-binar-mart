@@ -1,0 +1,28 @@
+<header class="border-bottom py-3 mb-4">
+  <div class="container d-flex flex-wrap justify-content-center">
+    <a
+      href="/"
+      class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
+    >
+      <span class="fs-4">Binar Mart</span>
+    </a>
+
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <% if (url === '/') { %>
+          <a href="/" class="nav-link active" aria-current="page">Barang</a>
+        <% } else { %>
+          <a href="/" class="nav-link">Barang</a>
+        <% } %>
+      </li>
+
+      <li class="nav-item">
+        <% if (url === '/supplier') { %>
+          <a href="/supplier" class="nav-link active" aria-current="page">Supplier</a>
+        <% } else { %>
+          <a href="/supplier" class="nav-link">Supplier</a>
+        <% } %>
+      </li>
+    </ul>
+  </div>
+</header>
