@@ -1,7 +1,7 @@
 <header class="border-bottom py-2 mb-4">
   <nav class="navbar navbar-expand-sm">
     <div class="container">
-      <a class="navbar-brand" href="#">Binar Mart</a>
+      <a class="navbar-brand" href="/">Binar Mart</a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -10,15 +10,15 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <% if (url === '/') { %>
-              <a href="/" class="nav-link active" aria-current="page">Barang</a>
-            <% } else { %>
-              <a href="/" class="nav-link">Barang</a>
+            <% if (url.includes('/products')) { %>
+              <a href="/products" class="nav-link active" aria-current="page">Barang</a>
+            <% } else { %> 
+              <a href="/products" class="nav-link">Barang</a>
             <% } %>
           </li>
 
           <li class="nav-item">
-            <% if (url === '/suppliers') { %>
+            <% if (url.includes('/suppliers')) { %>
               <a href="/suppliers" class="nav-link active" aria-current="page">Supplier</a>
             <% } else { %>
               <a href="/suppliers" class="nav-link">Supplier</a>

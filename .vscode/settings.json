@@ -1,0 +1,6 @@
+{
+  // To prevent prettier running on .ejs
+  "[html]": {
+    "editor.formatOnSave": false
+  }
+}
