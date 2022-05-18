@@ -10,23 +10,23 @@
     <tbody>
       <tr>
         <th scope="row">Harga</th>
-        <td>20000</td>
+        <td><%= product.price %></td>
       </tr>
       <tr>
         <th scope="row">Stok</th>
-        <td>3</td>
+        <td><%= product.stock %></td>
       </tr>
       <tr>
         <th scope="row">Supplier</th>
-        <td>PT. Mitra Utama</td>
+        <td><%= product.supplier.name %></td>
       </tr>
       <tr>
         <th scope="row">Data Dibuat</th>
-        <td>2019/01/22</td>
+        <td><%= product.supplier.createdAt %></td>
       </tr>
       <tr>
         <th scope="row">Data Diperbarui</th>
-        <td>2019/01/23</td>
+        <td><%= product.supplier.updatedAt %></td>
       </tr>
     </tbody>
   </table>

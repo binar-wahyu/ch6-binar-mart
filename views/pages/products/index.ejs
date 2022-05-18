@@ -31,13 +31,15 @@
                 <i class="bi-eye-fill"></i> Lihat Detail
               </a>
 
-              <a class="btn btn-primary btn-sm" href="/products/<%= product.name %>/edit" role="button">
+              <a class="btn btn-primary btn-sm" href="/products/<%= product.id %>/edit" role="button">
                 <i class="bi-pencil-fill"></i> Edit
               </a>
 
-              <a class="btn btn-danger btn-sm" role="button">
-                <i class="bi-trash-fill"></i> Hapus
-              </a>
+              <form method="post" action="/products/<%= product.id %>?_method=DELETE">
+                <button class="btn btn-danger btn-sm" type="submit">
+                  <i class="bi-trash-fill"></i> Hapus
+                </button>
+              </form>
             </div>
           </td>
         </tr>

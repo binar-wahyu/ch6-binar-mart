@@ -22,7 +22,9 @@ router.get("/products", (req, res) => {
 });
 
 router.get("/products/create", (req, res) => {
-  Supplier.findAll({ order: [["name", "ASC"]] }).then((suppliers) => {
+  Supplier.findAll({
+    order: [["name", "ASC"]],
+  }).then((suppliers) => {
     res.render("pages/products/create", {
       pageTitle: "Buat Barang",
       suppliers,
@@ -32,6 +34,7 @@ router.get("/products/create", (req, res) => {
 
 router.post("/products", (req, res) => {
   const { name, price, stock, supplierId } = req.body;
+
   Product.create({
     name,
     price,
@@ -43,7 +46,61 @@ router.post("/products", (req, res) => {
 });
 
 router.get("/products/:id", (req, res) => {
-  res.render("pages/products/show", { pageTitle: "Barang: Masker Medis" });
+  Product.findOne({
+    where: { id: req.params.id },
+    include: "supplier",
+  }).then((product) => {
+    res.render("pages/products/show", {
+      pageTitle: `Barang: ${product.name}`,
+      product,
+    });
+  });
+});
+
+router.get("/products/:id/edit", async (req, res) => {
+  const product = await Product.findOne({
+    where: { id: req.params.id },
+  });
+
+  const suppliers = await Supplier.findAll({
+    order: [["name", "ASC"]],
+  });
+
+  res.render("pages/products/edit", {
+    pageTitle: "Edit Produk",
+    product,
+    suppliers,
+  });
+});
+
+router.put("/products/:id", (req, res) => {
+  const { name, price, stock, supplierId } = req.body;
+
+  Product.update(
+    {
+      name,
+      price,
+      stock,
+      supplierId,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  ).then(() => {
+    res.redirect("back");
+  });
+});
+
+router.delete("/products/:id", (req, res) => {
+  Product.destroy({
+    where: {
+      id: req.params.id,
+    },
+  }).then(() => {
+    res.redirect("back");
+  });
 });
 
 /** END PRODUCTS ROUTE */
@@ -87,7 +144,9 @@ router.post("/suppliers", (req, res) => {
 });
 
 router.get("/suppliers/:id", (req, res) => {
-  Supplier.findOne({ where: { id: req.params.id } }).then((supplier) => {
+  Supplier.findOne({
+    where: { id: req.params.id },
+  }).then((supplier) => {
     res.render("pages/suppliers/show", {
       pageTitle: `Supplier: ${supplier.name}`,
       supplier,
@@ -96,7 +155,9 @@ router.get("/suppliers/:id", (req, res) => {
 });
 
 router.get("/suppliers/:id/edit", (req, res) => {
-  Supplier.findOne({ where: { id: req.params.id } }).then((supplier) => {
+  Supplier.findOne({
+    where: { id: req.params.id },
+  }).then((supplier) => {
     res.render("pages/suppliers/edit", {
       pageTitle: "Edit Supplier",
       supplier,

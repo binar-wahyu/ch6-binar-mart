@@ -1,0 +1,43 @@
+<h3 class="mb-3"><%= pageTitle %></h3>
+
+<form method="post" action="/products/<%= product.id %>?_method=PUT">
+  <div class="mb-3">
+    <label for="name" class="form-label">Nama Barang</label>
+    <input type="text" class="form-control" name="name" id="name" value="<%= product.name %>" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Harga</label>
+    <input type="number" class="form-control" id="price" name="price" value="<%= product.price %>" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="stock" class="form-label">Stok</label>
+    <input type="number" class="form-control" id="stock" name="stock" min="0" value="<%= product.stock %>" required>
+  </div>
+
+  <div class="mb-4">
+    <label for="supplier" class="form-label">Supplier</label>
+    <select class="form-select" aria-label="Supplier" name="supplierId" required>
+      <% suppliers.forEach((supplier) => { %>
+        <option value="<%= supplier.id %>" <%= product.supplierId === supplier.id ? "selected" : '' %>>
+          <%= supplier.name %>
+        </option>
+      <% }) %>
+    </select>
+  </div>
+
+  <div class="row">
+    <div class="col-auto">
+      <button type="button" onclick="history.back()" class="btn btn-danger">Batal</button>
+    </div>
+
+    <div class="col-auto">
+      <button type="reset" class="btn btn-secondary">Reset</button>
+    </div>
+
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
