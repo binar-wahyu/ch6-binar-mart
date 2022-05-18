@@ -16,60 +16,26 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td class="w-100">PT. Mitra Utama</td>
-        <td>081234567890</td>
-        <td class="text-nowrap">
-          <a class="btn btn-success btn-sm" href="/suppliers/1" role="button">
-            <i class="bi-eye-fill"></i> Lihat Detail
-          </a>
-
-          <a class="btn btn-primary btn-sm" href="/suppliers/1" role="button">
-            <i class="bi-pencil-fill"></i> Edit
-          </a>
-
-          <a class="btn btn-danger btn-sm" href="/suppliers/1" role="button">
-            <i class="bi-trash-fill"></i> Hapus
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td class="w-100">PT. Mitra Utama</td>
-        <td>081234567890</td>
-        <td class="text-nowrap">
-          <a class="btn btn-success btn-sm" href="/suppliers/1" role="button">
-            <i class="bi-eye-fill"></i> Lihat Detail
-          </a>
-
-          <a class="btn btn-primary btn-sm" href="/suppliers/1" role="button">
-            <i class="bi-pencil-fill"></i> Edit
-          </a>
-
-          <a class="btn btn-danger btn-sm" href="/suppliers/1" role="button">
-            <i class="bi-trash-fill"></i> Hapus
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td class="w-100">PT. Mitra Utama</td>
-        <td>081234567890</td>
-        <td class="text-nowrap">
-          <a class="btn btn-success btn-sm" href="/suppliers/1" role="button">
-            <i class="bi-eye-fill"></i> Lihat Detail
-          </a>
-
-          <a class="btn btn-primary btn-sm" href="/suppliers/1" role="button">
-            <i class="bi-pencil-fill"></i> Edit
-          </a>
-
-          <a class="btn btn-danger btn-sm" href="/suppliers/1" role="button">
-            <i class="bi-trash-fill"></i> Hapus
-          </a>
-        </td>
-      </tr>
+      <% suppliers.forEach((supplier, index) => { %>
+        <tr>
+          <th scope="row"><%= index + 1 %></th>
+          <td class="w-100"><%= supplier.name %></td>
+          <td><%= supplier.phoneNumber %></td>
+          <td class="text-nowrap">
+            <a class="btn btn-success btn-sm" href="/suppliers/<%= supplier.id %>" role="button">
+              <i class="bi-eye-fill"></i> Lihat Detail
+            </a>
+  
+            <a class="btn btn-primary btn-sm" href="/suppliers/edit/<%= supplier.id %>" role="button">
+              <i class="bi-pencil-fill"></i> Edit
+            </a>
+  
+            <a class="btn btn-danger btn-sm" role="button">
+              <i class="bi-trash-fill"></i> Hapus
+            </a>
+          </td>
+        </tr>
+      <% }) %>
     </tbody>
   </table>
 </div>
