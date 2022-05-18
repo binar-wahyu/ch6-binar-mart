@@ -1,6 +1,9 @@
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const methodOverride = require("method-override");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const flash = require("connect-flash");
 const router = require("./router");
 
 const PORT = 3000;
@@ -13,6 +16,18 @@ app.use(methodOverride("_method"));
 // Accepting Input
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+// Set Cookie Parser, sessions and flash
+app.use(cookieParser("NotSoSecret"));
+app.use(
+  session({
+    secret: "something",
+    cookie: { maxAge: 60000 },
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+app.use(flash());
 
 // Static files
 app.use(express.static("public"));
