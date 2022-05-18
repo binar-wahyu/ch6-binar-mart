@@ -70,6 +70,41 @@ router.get("/suppliers/:id", (req, res) => {
   });
 });
 
+router.get("/suppliers/:id/edit", (req, res) => {
+  Supplier.findOne({ where: { id: req.params.id } }).then((supplier) => {
+    res.render("pages/suppliers/edit", {
+      pageTitle: "Edit Supplier",
+      supplier,
+    });
+  });
+});
+
+router.put("/suppliers/:id", (req, res) => {
+  let joinDate;
+  if (!req.body.joinDate) {
+    joinDate = null;
+  } else {
+    joinDate = req.body.joinDate;
+  }
+
+  Supplier.update(
+    {
+      name: req.body.name,
+      phoneNumber: req.body.phoneNumber,
+      email: req.body.email,
+      address: req.body.address,
+      joinDate,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  ).then(() => {
+    res.redirect("back");
+  });
+});
+
 /** END SUPPLIERS ROUTE */
 
 module.exports = router;
