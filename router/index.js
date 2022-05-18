@@ -62,8 +62,11 @@ router.post("/suppliers", (req, res) => {
 });
 
 router.get("/suppliers/:id", (req, res) => {
-  res.render("pages/suppliers/show", {
-    pageTitle: "Supplier: PT. Mitra Utama",
+  Supplier.findOne({ where: { id: req.params.id } }).then((supplier) => {
+    res.render("pages/suppliers/show", {
+      pageTitle: `Supplier: ${supplier.name}`,
+      supplier,
+    });
   });
 });
 
