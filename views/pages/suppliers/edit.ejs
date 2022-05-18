@@ -1,0 +1,42 @@
+<h3 class="mb-3"><%= pageTitle %></h3>
+
+<form method="post" action="/suppliers/<%= supplier.id %>?_method=PUT">
+  <div class="mb-3">
+    <label for="name" class="form-label">Nama Supplier</label>
+    <input type="text" class="form-control" name="name" id="name" value="<%= supplier.name %>" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="phoneNumber" class="form-label">No. Telp</label>
+    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" value="<%= supplier.phoneNumber %>" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email" name="email" value="<%= supplier.email %>">
+  </div>
+
+  <div class="mb-3">
+    <label for="address" class="form-label">Alamat</label>
+    <input type="text" class="form-control" id="address" name="address" value="<%= supplier.address %>">
+  </div>
+
+  <div class="mb-4">
+    <label for="joinDate" class="form-label">Tanggal Bergabung</label>
+    <input type="date" class="form-control" id="joinDate" name="joinDate" value="<%= supplier.joinDate %>">
+  </div>
+
+  <div class="row">
+    <div class="col-auto">
+      <button type="button" onclick="history.back()" class="btn btn-danger">Batal</button>
+    </div>
+
+    <div class="col-auto">
+      <button type="reset" class="btn btn-secondary">Reset</button>
+    </div>
+
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
