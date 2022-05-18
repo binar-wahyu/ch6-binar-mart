@@ -89,7 +89,7 @@ router.put("/products/:id", (req, res) => {
       },
     }
   ).then(() => {
-    res.redirect("back");
+    res.redirect("/products");
   });
 });
 
@@ -187,7 +187,7 @@ router.put("/suppliers/:id", (req, res) => {
       },
     }
   ).then(() => {
-    res.redirect("back");
+    res.redirect("/suppliers");
   });
 });
 
