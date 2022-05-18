@@ -1,3 +1,10 @@
+<% if (alertSuccess.length > 0) { %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= alertSuccess %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
 <div class="d-flex justify-content-between align-items-center">
   <h3 class="m-0"><%= pageTitle %></h3>
   <a class="btn btn-primary" href="/suppliers/create" role="button">

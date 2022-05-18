@@ -10,6 +10,8 @@ router.get("/", (req, res) => {
 /** START PRODUCTS ROUTE */
 
 router.get("/products", (req, res) => {
+  const alertSuccess = req.flash("alertSuccess");
+
   Product.findAll({
     order: [["name", "ASC"]],
     include: ["supplier"],
@@ -17,6 +19,7 @@ router.get("/products", (req, res) => {
     res.render("pages/products/index", {
       pageTitle: "Daftar Barang",
       products,
+      alertSuccess,
     });
   });
 });
@@ -41,6 +44,7 @@ router.post("/products", (req, res) => {
     stock,
     supplierId,
   }).then(() => {
+    req.flash("alertSuccess", "Berhasil membuat produk baru");
     res.redirect("/products");
   });
 });
@@ -89,7 +93,8 @@ router.put("/products/:id", (req, res) => {
       },
     }
   ).then(() => {
-    res.redirect("back");
+    req.flash("alertSuccess", "Berhasil mengubah produk");
+    res.redirect("/products");
   });
 });
 
@@ -99,6 +104,7 @@ router.delete("/products/:id", (req, res) => {
       id: req.params.id,
     },
   }).then(() => {
+    req.flash("alertSuccess", "Berhasil menghapus produk");
     res.redirect("back");
   });
 });
@@ -108,12 +114,15 @@ router.delete("/products/:id", (req, res) => {
 /** START SUPPLIERS ROUTE */
 
 router.get("/suppliers", (req, res) => {
+  const alertSuccess = req.flash("alertSuccess");
+
   Supplier.findAll({
     order: [["name", "ASC"]],
   }).then((suppliers) => {
     res.render("pages/suppliers/index", {
       pageTitle: "Daftar Supplier",
       suppliers,
+      alertSuccess,
     });
   });
 });
@@ -139,6 +148,7 @@ router.post("/suppliers", (req, res) => {
     address: req.body.address,
     joinDate,
   }).then(() => {
+    req.flash("alertSuccess", "Berhasil membuat supplier baru");
     res.redirect("/suppliers");
   });
 });
@@ -187,7 +197,8 @@ router.put("/suppliers/:id", (req, res) => {
       },
     }
   ).then(() => {
-    res.redirect("back");
+    req.flash("alertSuccess", "Berhasil mengubah data supplier");
+    res.redirect("/suppliers");
   });
 });
 
@@ -197,6 +208,7 @@ router.delete("/suppliers/:id", (req, res) => {
       id: req.params.id,
     },
   }).then(() => {
+    req.flash("alertSuccess", "Berhasil menghapus supplier");
     res.redirect("back");
   });
 });
