@@ -16,22 +16,18 @@ npm install
 npm install -g sequelize-cli
 ```
 
-3. If you haven't created a database, create it first :
+3. Config database based on your local configuration on `config/config.json`
+
+4. If you haven't created a database, create it first :
 
 ```bash
 sequelize db:create
 ```
 
-4. Migrate database :
+5. Migrate database :
 
 ```bash
 sequelize db:migrate
-```
-
-5. Run database seeder :
-
-```bash
-sequelize db:seed:all
 ```
 
 6. Run app for development :
