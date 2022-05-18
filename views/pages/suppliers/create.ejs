@@ -1,6 +1,6 @@
-<h3 class="mb-3">Buat Supplier</h3>
+<h3 class="mb-3"><%= pageTitle %></h3>
 
-<form method="post" action="/products/create">
+<form method="post" action="/suppliers">
   <div class="mb-3">
     <label for="name" class="form-label">Nama Supplier</label>
     <input type="text" class="form-control" name="name" id="name" required>
@@ -28,7 +28,7 @@
 
   <div class="row">
     <div class="col-auto">
-      <button onclick="history.back()" class="btn btn-danger">Batal</button>
+      <button type="button" onclick="history.back()" class="btn btn-danger">Batal</button>
     </div>
 
     <div class="col-auto">
