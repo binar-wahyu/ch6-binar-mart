@@ -105,6 +105,16 @@ router.put("/suppliers/:id", (req, res) => {
   });
 });
 
+router.delete("/suppliers/:id", (req, res) => {
+  Supplier.destroy({
+    where: {
+      id: req.params.id,
+    },
+  }).then(() => {
+    res.redirect("back");
+  });
+});
+
 /** END SUPPLIERS ROUTE */
 
 module.exports = router;
