@@ -1,6 +1,6 @@
 <h3 class="mb-3"><%= pageTitle %></h3>
 
-<form method="post" action="/products/create">
+<form method="post" action="/products">
   <div class="mb-3">
     <label for="name" class="form-label">Nama Barang</label>
     <input type="text" class="form-control" name="name" id="name" required>
@@ -13,16 +13,18 @@
 
   <div class="mb-3">
     <label for="stock" class="form-label">Stok</label>
-    <input type="number" class="form-control" id="stock" name="stock" required>
+    <input type="number" class="form-control" id="stock" name="stock" min="0" required>
   </div>
 
   <div class="mb-4">
     <label for="supplier" class="form-label">Supplier</label>
-    <select class="form-select" aria-label="Supplier" required>
-      <option selected disabled>-- Silahkan pilih --</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
+    <select class="form-select" aria-label="Supplier" name="supplierId" required>
+      <option selected disabled value="">-- Silahkan pilih --</option>
+      <% suppliers.forEach((supplier) => { %>
+        <option value="<%= supplier.id %>">
+          <%= supplier.name %>
+        </option>
+      <% }) %>
     </select>
   </div>
 

@@ -1,5 +1,5 @@
 const express = require("express");
-const { Supplier } = require("../models");
+const { Supplier, Product } = require("../models");
 
 const router = express.Router();
 
@@ -10,11 +10,36 @@ router.get("/", (req, res) => {
 /** START PRODUCTS ROUTE */
 
 router.get("/products", (req, res) => {
-  res.render("pages/products/index", { pageTitle: "Daftar Barang" });
+  Product.findAll({
+    order: [["name", "ASC"]],
+    include: ["supplier"],
+  }).then((products) => {
+    res.render("pages/products/index", {
+      pageTitle: "Daftar Barang",
+      products,
+    });
+  });
 });
 
 router.get("/products/create", (req, res) => {
-  res.render("pages/products/create", { pageTitle: "Buat Barang" });
+  Supplier.findAll({ order: [["name", "ASC"]] }).then((suppliers) => {
+    res.render("pages/products/create", {
+      pageTitle: "Buat Barang",
+      suppliers,
+    });
+  });
+});
+
+router.post("/products", (req, res) => {
+  const { name, price, stock, supplierId } = req.body;
+  Product.create({
+    name,
+    price,
+    stock,
+    supplierId,
+  }).then(() => {
+    res.redirect("/products");
+  });
 });
 
 router.get("/products/:id", (req, res) => {
